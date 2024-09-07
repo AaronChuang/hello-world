@@ -3,11 +3,9 @@ import fs from 'fs'
 import { Storage } from '@google-cloud/storage'
 import path from 'path'
 
-const bucketNameForDev = 'a-dev-apps'
+const bucketNameForDev = 'aaron-app'
 const projectIdDev = 'a-alpha-312605'
 const keyFilenameDev = 'dev.json'
-
-let projectName = 'app/smart-schedule'
 
 const gcsDevOptions = {
   projectId: projectIdDev,
@@ -35,27 +33,25 @@ function uploadToGCS(gcsOptions, done) {
     projectId: gcsOptions.projectId,
     keyFilename: gcsOptions.keyFilename
   })
-  setTimeout(function () {
-    findUploadFullPaths(`./dist`).then((paths) => {
-      paths.map((path) => {
-        storage.bucket(gcsOptions.bucket).upload(
-          path,
-          {
-            destination: `${projectName}${path.replace('dist', '')}`,
-            metadata: {
-              cacheControl: gcsOptions.cacheControl
-            },
-            public: true
+  findUploadFullPaths(`./dist`).then((paths) => {
+    paths.map((path) => {
+      storage.bucket(gcsOptions.bucket).upload(
+        path,
+        {
+          destination: `${path.replace('dist/', '')}`,
+          metadata: {
+            cacheControl: gcsOptions.cacheControl
           },
-          (err, file) => {
-            if (err) console.error(err)
-            console.log(`Upload ${file.name} successfully`)
-          }
-        )
-      })
-      done()
+          public: true
+        },
+        (err, file) => {
+          if (err) console.error(err)
+          console.log(`Upload ${file.name} successfully`)
+        }
+      )
     })
-  }, 1000)
+    done()
+  })
 }
 
-gulp.task('uploadGcsDev', gulp.series('package', uploadToGCS.bind(uploadToGCS, gcsDevOptions)))
+gulp.task('uploadGcs', uploadToGCS.bind(uploadToGCS, gcsDevOptions))

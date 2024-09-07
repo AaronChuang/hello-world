@@ -29,15 +29,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.41)
-      element-resize-detector:
-        specifier: ^1.2.4
-        version: 1.2.4
       gulp:
         specifier: 4.0.2
         version: 4.0.2
-      maath:
-        specifier: ^0.10.8
-        version: 0.10.8(@types/three@0.167.2)(three@0.167.1)
       npm:
         specifier: ^10.8.2
         version: 10.8.2
@@ -1239,9 +1233,6 @@ packages:
     resolution: {integrity: sha512-5T6P4xPgpp0YDFvSWwEZ4NoE3aM4QBQXDzmVbraCkFj8zHM+mba8SyqB5DbZWyR7mYHo6Y7BdQo3MoA4m0TeQg==}
     engines: {node: '>=0.10.0'}
 
-  batch-processor@1.0.0:
-    resolution: {integrity: sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA==}
-
   big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
 
@@ -1662,9 +1653,6 @@ packages:
 
   electron-to-chromium@1.5.13:
     resolution: {integrity: sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==}
-
-  element-resize-detector@1.2.4:
-    resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -2625,12 +2613,6 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
-
-  maath@0.10.8:
-    resolution: {integrity: sha512-tRvbDF0Pgqz+9XUa4jjfgAQ8/aPKmQdWXilFu2tMy4GWj4NOsx99HlULO4IeREfbO3a0sA145DZYyvXPkybm0g==}
-    peerDependencies:
-      '@types/three': '>=0.134.0'
-      three: '>=0.134.0'
 
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
@@ -5685,8 +5667,6 @@ snapshots:
       mixin-deep: 1.3.2
       pascalcase: 0.1.1
 
-  batch-processor@1.0.0: {}
-
   big.js@5.2.2: {}
 
   bignumber.js@9.1.2: {}
@@ -6132,10 +6112,6 @@ snapshots:
       semver: 7.6.3
 
   electron-to-chromium@1.5.13: {}
-
-  element-resize-detector@1.2.4:
-    dependencies:
-      batch-processor: 1.0.0
 
   emoji-regex@8.0.0: {}
 
@@ -7271,11 +7247,6 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
-
-  maath@0.10.8(@types/three@0.167.2)(three@0.167.1):
-    dependencies:
-      '@types/three': 0.167.2
-      three: 0.167.1
 
   magic-string@0.30.11:
     dependencies:

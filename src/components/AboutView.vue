@@ -1,32 +1,34 @@
 <script setup lang="ts">
-import { services } from '@/constants'
+import { intro, services } from '@/constants'
 import { styles } from '@/utils/style'
-import { fadeIn, textVariant } from '@/utils/motion'
-import Card from 'primevue/card';
-
+import Card from 'primevue/card'
 </script>
 
 <template lang="pug">
-div(v-motion :variants="textVariant(100)")
-  p(:class="styles.sectionSubText") Introduction
-  h2(:class="styles.sectionHeadText") Overview
-p.mt-4.text-secondary.max-w-3xl(class="text-[17px] leading-[30px]" v-motion :variants="fadeIn('', '', 100, 1000)")
-  | I am a full-stack developer with a passion for creating beautiful and functional websites.
-  | I have experience in both front-end and back-end development, and I am always looking to learn new technologies and improve my skills.
-  | I am proficient in HTML, CSS, JavaScript, and various front-end frameworks such as Vue.js and React.
-  | I also have experience with back-end technologies such as Node.js, Express, and MongoDB.
-  | I am a quick learner and a problem solver, and I am always looking for new challenges to tackle.
-.flex.flex-row.flex-wrap.justify-between.gap-4.p-10
-  Card.w-64.h-64.green-pink-gradient.shadow-md.rounded-3xl(
-    v-for="(service, index) in services"
-    v-motion :variants="fadeIn('right', 'spring', index * 500, 750)"
-  )
-    template(#content)
-      .bg-tertiary.py-5.px-12.flex.flex-col.justify-center.items-center.min-h-60.rounded-3xl
-        img.w-16.h-16.object-contain(:src="service.icon" alt="icon")
-        h3.text-white.font-bold.text-center(class="text-[20px]") {{ service.title }}
+  div(v-motion :initial="{y: -50, opacity: 0}"
+    :enter="{y: 0, opacity: 1, transition: {duration: 1.25, delay: 0.1}}")
+    p(:class="styles.sectionSubText" style="font-family: var(--main-font);") Introduction
+    h2(:class="styles.sectionHeadText" style="font-family: var(--main-font);") Overview
+
+  p.mt-4.mb-8.text-secondary(class="text-[17px] leading-[30px]" v-motion :initial="{x:-100, y:0, opacity: 0 }"
+    :enter="{ x:0, y:0, opacity: 1, transition: { delay: 0.1, duration: 1}}"  style="font-family: var(--main-font);")
+    | {{ intro }}
+
+  hr.border-gray-300.my-6
+
+  .flex.flex-row.flex-wrap.justify-between.gap-4.p-10
+    Card.w-64.h-64.green-pink-gradient.shadow-md.rounded-3xl(
+      v-for="(service, index) in services"
+      v-motion :initial="{scale: 1, x:-100, y:0, opacity: 0 }"
+      :enter="{scale: 1,  x:0, y:0, opacity: 1, transition: { delay: index * 0.5, duration: 0.75}}"
+      :hovered="{ scale: 1.1, transition: { type: 'spring', ease:'easeOut', damping: 8, stiffness: 500} }"
+    )
+      template(#content)
+        .bg-tertiary.py-5.px-12.flex.flex-col.justify-center.items-center.min-h-60.rounded-3xl
+          img.w-16.h-16.object-contain(:src="service.icon" alt="icon")
+          h3.text-white.font-bold.text-center(class="text-[20px]" style="font-family: var(--main-font);") {{ service.title }}
+
+
 </template>
 
-<style lang="sass" scoped>
-
-</style>
+<style lang="sass" scoped></style>

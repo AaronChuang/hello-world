@@ -11,16 +11,15 @@ const gl = {
 const xRotation = shallowRef(0)
 const yRotation = shallowRef(0)
 useRenderLoop().onLoop(({ delta }) => {
-  xRotation.value -= delta/10
-  yRotation.value -= delta/15
-
+  xRotation.value -= delta/100
+  yRotation.value -= delta/150
 })
 </script>
 
 <template lang="pug">
-  .w-full.h-auto.absolute.inset-0(class="z-[-1]")
-    TresCanvas(v-bind="gl")
-      Stars(:rotation="[xRotation, yRotation, Math.PI/4]" :radius="3" :depth=0 :count="5000" :size="0.004" :size-attenuation="true")
+.w-full.h-auto.absolute.inset-0(class="z-[-1]")
+  TresCanvas(v-bind="gl")
+    Stars(:rotation="[xRotation, yRotation, Math.PI/4]" :radius="3" :depth=0 :count="5000" :size="0.002" :size-attenuation="true")
 </template>
 <style scoped lang="sass">
 </style>

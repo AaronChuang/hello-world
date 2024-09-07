@@ -22,28 +22,28 @@ onMounted( async () => {
   if (target && iconTexture.value) {
     decalGeometry.value = new DecalGeometry(
       target,
-      new Vector3(0, 0, 1),      // Decal 的位置
-      new Euler(2 * Math.PI, 0, 6.25),          // Decal 的旋转
-      new Vector3(1, 1, 1)   // Decal 的大小
+      new Vector3(0, 0, 1),
+      new Euler(2 * Math.PI, 0, 6.25),
+      new Vector3(1, 1, 1)
     );
   }
 })
 </script>
 
 <template lang="pug">
-  TresCanvas(v-bind="gl")
-    TresPerspectiveCamera
-    OrbitControls(:enable-zoom="false" )
-    Levioso(:speed="1.75" :rotationFactor="1" :floatFactor="2")
-      TresAmbientLight(:intensity="0.25")
-      TresDirectionalLight(:position="[0, 0, 0.05]")
-      TresMesh(ref="targetMesh" :cast-shadow="true" :receive-shadow="true" :scale="2")
-        TresIcosahedronGeometry(:radius="1" :detail="1")
-        Suspense
-          TresMeshStandardMaterial(:color="'#fff8eb'" :polygon-offset="true" :polygon-offset-factor="-5"
-                :flat-shading="true")
-          template(#fallback)
-            CanvasLoader
-      TresMesh(v-if="decalGeometry" :geometry="decalGeometry" :scale="2")
-        TresMeshStandardMaterial(:map="iconTexture" :transparent="true" :depth-test="false" :depth-write="false" :flat-shading="true")
+TresCanvas(v-bind="gl")
+  TresPerspectiveCamera
+  OrbitControls(:enable-zoom="false" )
+  Levioso(:speed="1.75" :rotationFactor="1" :floatFactor="2")
+    TresAmbientLight(:intensity="0.25")
+    TresDirectionalLight(:position="[0, 0, 0.05]")
+    TresMesh(ref="targetMesh" :cast-shadow="true" :receive-shadow="true" :scale="2")
+      TresIcosahedronGeometry(:radius="1" :detail="1")
+      Suspense
+        TresMeshStandardMaterial(:color="'#fff8eb'" :polygon-offset="true" :polygon-offset-factor="-5"
+              :flat-shading="true")
+        template(#fallback)
+          CanvasLoader
+    TresMesh(v-if="decalGeometry" :geometry="decalGeometry" :scale="2")
+      TresMeshStandardMaterial(:map="iconTexture" :transparent="true" :depth-test="false" :depth-write="false" :flat-shading="true")
 </template>

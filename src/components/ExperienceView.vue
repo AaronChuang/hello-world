@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { experiences } from '@/constants/index'
 import { styles } from '@/utils/style'
-import { fadeIn, textVariant } from '@/utils/motion'
 import Timeline from 'primevue/timeline';
 import Card from 'primevue/card';
 
@@ -10,7 +8,8 @@ import Card from 'primevue/card';
 
 <template lang="pug">
 
-div(v-motion :variants="textVariant(100)")
+div(v-motion :initial="{y: -50, opacity: 0}"
+  :enter="{y: 0, opacity: 1, transition: { type: 'spring', duration: 1.25, delay: 0.1}}")
   p(:class="styles.sectionSubText") What I have done so far
   h2(:class="styles.sectionHeadText") Work Experience.
 .mt-20.flex.flex-col

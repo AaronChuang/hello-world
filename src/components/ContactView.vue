@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { fadeIn, slideIn } from '@/utils/motion'
 import { ref } from 'vue'
 import { styles } from '@/utils/style'
 import emailjs from '@emailjs/browser'
@@ -34,7 +33,7 @@ const handleSubmit = () => {
         name: '',
         email: '',
         message: ''
-      };
+      }
       loading.value = false
     },
     (error) => {
@@ -46,8 +45,9 @@ const handleSubmit = () => {
 </script>
 
 <template lang="pug">
-  .flex.flex-col.flex-col-reverse.gap-10.overflow-hidden(class="xl:mt-12 xl:flex-row")
-    .bg-black-100.p-8.rounded-2xl(class="flex-[0.75]" v-motion :variants="fadeIn('left', 'tween', 200, 1000)")
+  .flex.flex-col.flex-col-reverse.gap-10.overflow-hidden(class="xl:flex-row")
+    .bg-black-100.p-8.rounded-2xl(class="flex-[0.5]" v-motion :initial="{scale: 1, x:100, y:0, opacity: 0 }"
+      :enter="{scale: 1, x:0, y:0, opacity: 1, transition: { type: 'tween', ease:'easeOut', delay: 0.2, duration: 1}}")
       p(:class="styles.sectionSubText") Get in touch
       h2(:class="styles.sectionHeadText") Contact.
       form.mt-12.flex.flex-col.gap-8(@submit.prevent="handleSubmit")
@@ -60,7 +60,7 @@ const handleSubmit = () => {
           span.text-white.font-medium.mb-4 Your email
           input.bg-tertiary.py-4.px-6.text-white.rounded-lg.outline-none.border-none.font-medium(
             type="email" class="placeholder:text-secondary" name="email" v-model="form.email"
-             placeholder="What's your web address?")
+            placeholder="What's your web address?")
         label.flex.flex-col
           span.text-white.font-medium.mb-4 Your Message
           textarea.bg-tertiary.py-4.px-6.text-white.rounded-lg.outline-none.border-none.font-medium(
@@ -68,7 +68,9 @@ const handleSubmit = () => {
             placeholder="What you want to say?")
         button.bg-tertiary.py-3.px-8.rounded-xl.outline-none.w-fit.text-white.font-bold.shadow-md.shadow-primary(
           type="submit" :disabled="loading") {{ loading ? 'Sending...' : 'Send' }}
-    div(class="xl:h-auto md:h-[550px] h-[350px]" v-motion :variants="slideIn('right', 'tween', 200, 1000)")
+    div(class="flex-[0.5]" v-motion :initial="{scale: 1, x:100, y:0, opacity: 0 }"
+      :enter="{scale: 1,  x:0, y:0, opacity: 1, transition: {type:'tween' ,delay: 0.2, duration: 1, ease: 'easeOut'}}"
+    )
       EarthCanvas
 </template>
 
